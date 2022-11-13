@@ -7,4 +7,12 @@ class AuthorsController < ApplicationController
     @author.save
     redirect_to root_path
   end
+  #show action
+  def show
+    @author = Author.find(params[:id])
+    #print the whole database of authors
+    puts Author.all
+    #print the names of all authors
+    puts Author.all.map{|author| author.name}
+  end
 end
