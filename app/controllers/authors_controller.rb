@@ -19,16 +19,21 @@ class AuthorsController < ApplicationController
   def index
     @authors = Author.all
   end
-  #edit and update actions
+
   def edit
     @author = Author.find(params[:id])
   end
+  #update author with id
+
   def update
     @author = Author.find(params[:id])
-    if @author.update(author_params)
-      redirect_to author_path(@author)
-    else
-      render :edit
+    if params[:author][:first_name] != nil
+      author_params = params.require(:author).permit(:first_name, :last_name, :homepage)
+      if @author.update(author_params)
+        redirect_to author_path(@author)
+      else
+        render :edit
+      end
     end
   end
 end
