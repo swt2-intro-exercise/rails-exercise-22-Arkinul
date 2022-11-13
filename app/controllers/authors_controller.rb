@@ -15,4 +15,7 @@ class AuthorsController < ApplicationController
     #print the names of all authors
     puts Author.all.map{|author| author.name}
   end
+  def index
+    @authors = Author.all
+  end
 end
