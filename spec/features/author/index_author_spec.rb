@@ -37,7 +37,7 @@ describe "Index author page", type: :feature do
     visit authors_path
     count = Author.count
     #click on the delete link and confirm the deletion
-    find_link('Delete', href: author_path(@alan)).click
+    click_link('Delete', href: author_path(@alan))
     expect(Author.count).to eq(count-1)
   end
 end
