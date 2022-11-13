@@ -19,4 +19,24 @@ describe "Index author page", type: :feature do
     visit authors_path
     expect(page).to have_link('New', href: new_author_path)
   end
+  #should contain a link to edit each author
+  it "should have a link to edit each author" do
+    @alan = FactoryBot.create :author
+    visit authors_path
+    expect(page).to have_link('Edit', href: edit_author_path(@alan))
+  end
+  #should contain a link to delete each author
+  it "should have a link to delete each author" do
+    @alan = FactoryBot.create :author
+    visit authors_path
+    expect(page).to have_link('Destroy', href: author_path(@alan))
+  end
+  #after an author has been deleted, the author.count should be one less than before
+  it "should delete an author" do
+    @alan = FactoryBot.create :author
+    visit authors_path
+    expect(Author.count).to eq(1)
+    click_link 'Destroy'
+    expect(Author.count).to eq(0)
+  end
 end
