@@ -4,5 +4,5 @@ class Author < ApplicationRecord
     "#{first_name} #{last_name}"
   end
   #should always have a last name
-  validates :last_name, presence: true
+  validates :last_name, presence: true, length: { minimum: 1 }
 end

@@ -22,5 +22,13 @@ require 'rails_helper'
       #check if the author is in the database
       expect(Author.where(first_name: 'Alan', last_name: 'Turing', homepage: 'http://wikipedia.org/Alan_Turing')).to exist
    end
+   #fill in form with missing last name and check if the error message is displayed
+   it "should display an error message when last name is missing" do
+     visit new_author_path
+     page.fill_in 'author[first_name]', with: 'Alan'
+     page.fill_in 'author[homepage]', with: 'http://wikipedia.org/Alan_Turing'
+     find('input[type="submit"]').click
+     expect(page).to have_text("Last name can't be blank")
+   end
 
  end

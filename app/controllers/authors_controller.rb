@@ -4,16 +4,17 @@ class AuthorsController < ApplicationController
   end
   def create
     @author = Author.new(first_name: params[:author][:first_name], last_name: params[:author][:last_name], homepage: params[:author][:homepage])
-    @author.save
-    redirect_to root_path
+    if @author.save
+      redirect_to author_path(@author)
+    else
+      render :new
+    end
+
   end
   #show action
   def show
     @author = Author.find(params[:id])
-    #print the whole database of authors
-    puts Author.all
-    #print the names of all authors
-    puts Author.all.map{|author| author.name}
+
   end
   def index
     @authors = Author.all
