@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   resources :authors
+  #a post route for the new author form
+  post 'authors/new', to: 'authors#create'
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
