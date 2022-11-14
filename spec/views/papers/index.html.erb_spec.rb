@@ -31,4 +31,15 @@ describe "Index paper page", type: :feature do
     visit papers_path
     expect(page).to have_link('Delete', href: paper_path(@paper))
   end
+  #check if from papers from different years only one is shown, if the scope is used
+  it "should only show one paper from a year if the scope is used" do
+    @paper = FactoryBot.create :paper
+    @paper2 = FactoryBot.create :paper2
+    visit papers_path
+    expect(page).to have_text('COMPUTING MACHINERY AND INTELLIGENCE')
+    expect(page).to have_text('COMPUTING MACHINERY AND INTELLIGENCE2')
+    visit papers_path(year: 1950)
+    expect(page).to have_text('COMPUTING MACHINERY AND INTELLIGENCE')
+    expect(page).not_to have_text('COMPUTING MACHINERY AND INTELLIGENCE2')
+  end
 end

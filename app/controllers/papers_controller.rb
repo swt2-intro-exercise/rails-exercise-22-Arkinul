@@ -2,8 +2,13 @@ class PapersController < ApplicationController
   before_action :set_paper, only: %i[ show edit update destroy ]
 
   # GET /papers
+  #index should take year as a parameter and only show papers from that year
   def index
-    @papers = Paper.all
+    if params[:year]
+      @papers = Paper.where(year: params[:year])
+    else
+      @papers = Paper.all
+    end
   end
 
   # GET /papers/1

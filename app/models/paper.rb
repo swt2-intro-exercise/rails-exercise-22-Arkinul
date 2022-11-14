@@ -8,5 +8,7 @@ class Paper < ApplicationRecord
 
   #should have and belong to many authors
   has_and_belongs_to_many :authors
+  #should have scope for year
+  scope :published_in, ->(year) { where("year = ?", year) }
 
 end
