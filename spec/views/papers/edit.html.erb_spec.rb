@@ -29,6 +29,7 @@ describe "Edit paper page", type: :feature do
   #select multiple authors and save paper
   it "should select multiple authors and save paper" do
     #create paper
+
     @paper = FactoryBot.create :paper
     #create Alan Turing and Grace Hopper
     @alan = FactoryBot.create :author
