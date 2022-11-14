@@ -26,4 +26,21 @@ describe "Edit paper page", type: :feature do
     visit edit_paper_path(@paper)
     expect(page).to have_select('paper_author_ids')
   end
+  #select multiple authors and save paper
+  it "should select multiple authors and save paper" do
+    #create paper
+    @paper = FactoryBot.create :paper
+    #create Alan Turing and Grace Hopper
+    @alan = FactoryBot.create :author
+    @grace = FactoryBot.create :author2
+    #visit edit page
+    visit edit_paper_path(@paper)
+    #select Alan Turing and Grace Hopper in the multiselect box
+    select(@alan.name, from: 'paper_author_ids')
+    select(@grace.name, from: 'paper_author_ids')
+    #save paper
+    find('input[type="submit"]').click
+    #check if paper has 2 authors
+    expect(@paper.authors.count).to eq(2)
+  end
 end
