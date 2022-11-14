@@ -20,4 +20,10 @@ describe "Edit paper page", type: :feature do
     expect(@paper.venue).to eq('Mind 49: 433-460')
     expect(@paper.year).to eq(1950)
   end
+  #should contain a multiselect box for selecting authors
+  it "should contain a multiselect box for selecting authors" do
+    @paper = FactoryBot.create :paper
+    visit edit_paper_path(@paper)
+    expect(page).to have_select('paper_author_ids')
+  end
 end
