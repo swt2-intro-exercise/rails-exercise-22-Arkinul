@@ -9,4 +9,10 @@ describe "Show paper page", type: :feature do
     expect(page).to have_text('Mind 49: 433-460')
     expect(page).to have_text('1950')
   end
+  #a paper with an author should show the author's name on the page
+  it "should show the author's name on the page" do
+    @paper = FactoryBot.create :paper
+    visit paper_path(@paper)
+    expect(page).to have_text('Alan Turing')
+  end
 end

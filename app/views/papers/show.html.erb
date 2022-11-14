@@ -1,6 +1,11 @@
 <p style="color: green"><%= notice %></p>
 
 <%= render @paper %>
+<!--should show list of full names of authors-->
+
+<% @paper.authors.each do |author| %>
+  <%= author.name %>
+<% end %>
 
 <div>
   <%= link_to "Edit this paper", edit_paper_path(@paper) %> |
