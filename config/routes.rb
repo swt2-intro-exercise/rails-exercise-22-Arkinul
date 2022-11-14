@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   resources :authors
   #a post route for the new author form
   post 'authors/new', to: 'authors#create'
+
+  resources :papers
+  #a post route for the new paper form
+  post 'papers/new', to: 'papers#create'
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
