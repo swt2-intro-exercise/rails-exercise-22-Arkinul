@@ -32,4 +32,29 @@ describe "New paper page", type: :feature do
     find('input[type="submit"]').click
     expect(page).to have_text("Title can't be blank")
   end
+  #fill in form with missing venue and check if the error message is displayed
+  it "should display an error message when venue is missing" do
+    visit new_paper_path
+    page.fill_in 'paper[title]', with: 'COMPUTING MACHINERY AND INTELLIGENCE'
+    page.fill_in 'paper[year]', with: '1950'
+    find('input[type="submit"]').click
+    expect(page).to have_text("Venue can't be blank")
+  end
+  #fill in form with missing year and check if the error message is displayed
+  it "should display an error message when year is missing" do
+    visit new_paper_path
+    page.fill_in 'paper[title]', with: 'COMPUTING MACHINERY AND INTELLIGENCE'
+    page.fill_in 'paper[venue]', with: 'Mind 49: 433-460'
+    find('input[type="submit"]').click
+    expect(page).to have_text("Year can't be blank")
+  end
+  #fill in form with non-integer year and check if the error message is displayed
+  it "should display an error message when year is not a number" do
+    visit new_paper_path
+    page.fill_in 'paper[title]', with: 'COMPUTING MACHINERY AND INTELLIGENCE'
+    page.fill_in 'paper[venue]', with: 'Mind 49: 433-460'
+    page.fill_in 'paper[year]', with: 'nineteen fifty'
+    find('input[type="submit"]').click
+    expect(page).to have_text("Year is not a number")
+  end
 end

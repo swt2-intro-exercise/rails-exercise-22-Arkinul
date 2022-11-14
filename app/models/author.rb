@@ -5,4 +5,7 @@ class Author < ApplicationRecord
   end
   #should always have a last name
   validates :last_name, presence: true, length: { minimum: 1 }
+
+  #should have and belong to many papers
+  has_and_belongs_to_many :papers
 end

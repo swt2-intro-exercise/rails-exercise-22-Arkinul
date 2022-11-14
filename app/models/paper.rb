@@ -6,4 +6,7 @@ class Paper < ApplicationRecord
   #should always have year and it should be an integer
   validates :year, presence: true, numericality: { only_integer: true }
 
+  #should have and belong to many authors
+  has_and_belongs_to_many :authors
+
 end
